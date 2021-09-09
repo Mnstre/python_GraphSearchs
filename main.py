@@ -9,6 +9,15 @@ class graphManager:
         self.gdict = gdict
     def getVertex(self):
         return list(self.gdict.keys())
+    def getEdges(self):
+        return list(self.findEdges())
+    def findEdges(self):
+        edgeName = []
+        for vertex in self.gdict:
+            for nextVertex in self.gdict[vertex]:
+                if {nextVertex, vertex} not in edgeName:
+                    edgeName.append({vertex, nextVertex})
+        return edgeName
 
 graph = {
     "a" : ["b", "c"],
@@ -21,3 +30,4 @@ graph = {
 g = graphManager(graph)
 print(graph)
 print(g.getVertex())
+print(g.getEdges())
