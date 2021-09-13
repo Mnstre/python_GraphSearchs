@@ -1,22 +1,13 @@
-def PYT():
-    print("Python")
-    return 0
-def CPP():
-    print("C++")
-    return 0
-def LUA():
-    print("LUA")
-    return 0
-def ASS():
-    print("Assembly")
-    return 0
+def PYT(): return 'Python'
+def CPP(): return 'C++'
+def LUA(): return 'LUA'
+def ASS(): return 'Assembly'
 
 def switch(x):
-    return {
-        'a': print(PYT),
-        'b': print(CPP),
-        'c': print(LUA),
-        'd': print(ASS),
+    switcher = {
+        0: "PYT",
+        1: "CPP",
+        2: "LUA",
     }[x]
 
 valor = input("""
@@ -26,4 +17,5 @@ b . C++
 c . LUA
 d . Assembly
 """)
-switch(valor)
+vFunction = switch(valor)
+vFunction()
