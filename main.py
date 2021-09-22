@@ -7,7 +7,9 @@ class graphManager:
         if gdict is None:
             gdict = []
         self.gdict = gdict
-
+    
+    def getGraph(self):
+        return self.gdict
     def getVertex(self):
         return list(self.gdict.keys())
     def getEdges(self):
@@ -31,6 +33,19 @@ class graphManager:
         else:
             self.gdict[vrtx1] = [vrtx2]
 
+    def switch(self, value):
+        switcher = {
+            '0': 'getGraph',
+            '1': 'getVertex',
+            '2': 'getEdges',
+            '3': 'addVertex',
+            '4': 'addEdge'
+        }
+        func = switcher.get(value, lambda: "Invalid option")
+        
+        cadena = self.func()
+        print(cadena)
+
 graph = {
     "a" : ["b", "c"],
     "b" : ["a", "d"],
@@ -38,21 +53,8 @@ graph = {
     "d" : ["e"],
     "e" : ["d"]
 }
-g = graphManager(graph)
 
+g = graphManager(graph)
 while(1):
-    print(graph)
     value = input("Ingrese una opción:\n1)Mostrar Vertices\n2)Mostrar Aristas\n3)Agregar Vertice\n4)Agregar Arista\n")
-    if value == '1':
-        print(g.getVertex())
-    if value == '2':
-        print(g.getEdges())
-    if value == '3':
-        v = input("Valor del nuevo Vertice:\n")
-        g.addVertex(v)
-        print(g.getVertex)
-    if value == '4':
-        e1 = input("Primer enlace:\n")
-        e2 = input("Segundo enlace:\n")
-        g.addEdge({e1, e2})
-        print(g.getEdges())
+    g.switch(value)
