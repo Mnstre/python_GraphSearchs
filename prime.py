@@ -1,13 +1,14 @@
 def PYT(): return 'Python'
 def CPP(): return 'C++'
 def LUA(): return 'LUA'
-def ASS(): return 'Assembly'
+def ASYa(): return 'Assembly'
 
 def switch(x):
     switcher = {
-        0: "PYT",
-        1: "CPP",
-        2: "LUA",
+        0: 'PYT',
+        1: 'CPP',
+        2: 'LUA',
+        3: 'ASY'
     }[x]
 
 valor = input("""
@@ -17,5 +18,5 @@ b . C++
 c . LUA
 d . Assembly
 """)
-vFunction = switch(valor)
-vFunction()
+vFunction = switch(int(valor))
+print(vFunction)
