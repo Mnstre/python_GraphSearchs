@@ -2,6 +2,7 @@
 #   Create, Edit and Eliminate Vertex and Edges of a Graph
 #
 #   Mnstre @ September, 2021
+#############################################
 class graphManager:
     def __init__(self, gdict=None):
         if gdict is None:
@@ -10,8 +11,10 @@ class graphManager:
     
     def getGraph(self):
         return self.gdict
+
     def getVertex(self):
         return list(self.gdict.keys())
+
     def getEdges(self):
         return self.findEdges()
 
@@ -22,9 +25,11 @@ class graphManager:
                 if {nextVertex, vertex} not in edgeName:
                     edgeName.append({vertex, nextVertex})
         return edgeName
+
     def addVertex(self, vertex):
         if vertex not in self.gdict:
             self.gdict[vertex] = []
+
     def addEdge(self, edge):
         edge = set(edge)
         (vrtx1, vrtx2) = tuple(edge)
@@ -32,7 +37,6 @@ class graphManager:
             self.gdict[vrtx1].append(vrtx2)
         else:
             self.gdict[vrtx1] = [vrtx2]
-
     def switch(self, value):
         switcher = {
             '0': 'getGraph',
@@ -42,10 +46,9 @@ class graphManager:
             '4': 'addEdge'
         }
         func = switcher.get(value, lambda: "Invalid option")
-        
-        cadena = self.func()
+        cadena = func()
         print(cadena)
-
+#############################################
 graph = {
     "a" : ["b", "c"],
     "b" : ["a", "d"],
@@ -53,8 +56,9 @@ graph = {
     "d" : ["e"],
     "e" : ["d"]
 }
-
 g = graphManager(graph)
+
 while(1):
     value = input("Ingrese una opción:\n1)Mostrar Vertices\n2)Mostrar Aristas\n3)Agregar Vertice\n4)Agregar Arista\n")
     g.switch(value)
+#############################################
