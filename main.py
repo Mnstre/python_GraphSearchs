@@ -16,14 +16,11 @@ class graphManager:
         return list(self.gdict.keys())
 
     def getEdges(self):
-        return self.findEdges()
-
-    def findEdges(self):
         edgeName = []
         for vertex in self.gdict:
-            for nextVertex in self.gdict[vertex]:
-                if {nextVertex, vertex} not in edgeName:
-                    edgeName.append({vertex, nextVertex})
+            for conection in self.gdict[vertex]:
+                if {conection, vertex} not in edgeName:
+                    edgeName.append({vertex, conection})
         return edgeName
 
     def addVertex(self, vertex):
