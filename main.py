@@ -23,24 +23,30 @@ class graphManager:
                     edgeName.append({vertex, conection})
         return edgeName
 
-    def addVertex(self, vertex):
+    def addVertex(self):
+        vertex = input("Vértice a agregar: ")
         if vertex not in self.gdict:
             self.gdict[vertex] = []
 
-    def addEdge(self, edge):
-        edge = set(edge)
-        (vrtx1, vrtx2) = tuple(edge)
-        if vrtx1 in self.gdict:
-            self.gdict[vrtx1].append(vrtx2)
-        else:
-            self.gdict[vrtx1] = [vrtx2]
+    def addEdge(self):
+        vertex1 = input("Edge start: ")
+        vertex2 = input("Edge end: ")
+        edge = sorted(vertex1, vertex2)
+        #
+        #edge = set(edge)
+        #(vertex1, vertex2) = tuple(edge)
+        #if vertex1 in self.gdict:
+        #    self.gdict[vertex1].append(vertex2)
+        #else:
+        #    self.gdict[vertex1] = [vertex2]
+        #
     def switch(self, value):
         switcher = {
-            '0': 'getGraph',
-            '1': 'getVertex',
-            '2': 'getEdges',
-            '3': 'addVertex',
-            '4': 'addEdge'
+            '0': self.getGraph,
+            '1': self.getVertex,
+            '2': self.getEdges,
+            '3': self.addVertex,
+            '4': self.addEdge
         }
         func = switcher.get(value, lambda: "Invalid option")
         cadena = func()
@@ -56,6 +62,6 @@ graph = {
 g = graphManager(graph)
 
 while(1):
-    value = input("Ingrese una opción:\n1)Mostrar Vertices\n2)Mostrar Aristas\n3)Agregar Vertice\n4)Agregar Arista\n")
+    value = input("Ingrese una opción:\n0)Mostrar Gráfo\n1)Mostrar Vertices\n2)Mostrar Aristas\n3)Agregar Vertice\n4)Agregar Arista\n")
     g.switch(value)
 #############################################
