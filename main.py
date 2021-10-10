@@ -10,19 +10,23 @@ class graphManager:
 
     def getVertex(self):
         return list(self.gdict.keys())
+
     def getEdges(self):
         return self.findEdges()
 
     def findEdges(self):
-        edgeName = []
-        for vertex in self.gdict:
-            for nextVertex in self.gdict[vertex]:
-                if {nextVertex, vertex} not in edgeName:
-                    edgeName.append({vertex, nextVertex})
-        return edgeName
+        edgeList = []
+        vertexList = self.getVertex()
+        for vStart in vertexList:
+            for vEnd in self.gdict[vStart]:
+                if {vStart, vEnd} not in edgeList:
+                    edgeList.append({vStart, vEnd})
+        return edgeList
+
     def addVertex(self, vertex):
         if vertex not in self.gdict:
             self.gdict[vertex] = []
+
     def addEdge(self, edge):
         edge = set(edge)
         (vrtx1, vrtx2) = tuple(edge)
@@ -41,8 +45,9 @@ graph = {
 g = graphManager(graph)
 
 while(1):
-    print(graph)
     value = input("Ingrese una opción:\n1)Mostrar Vertices\n2)Mostrar Aristas\n3)Agregar Vertice\n4)Agregar Arista\n")
+    if value == '0':
+        print(graph)
     if value == '1':
         print(g.getVertex())
     if value == '2':
